@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% block title %}CONTACT US{% endblock title %} 
+{% block stylecss %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+  integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="crossorigin="anonymous"referrerpolicy="no-referrer"/>
+{% endblock stylecss %} 
+{% block body %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      <h1 class="text-white bg-dark p-3">CONTACT US</h1>
+
+      {% for message  in messages  %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+
+
+      <div class="card p-2">
+        <form action="/contact" method="post">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            <h5>
+              <span><i class="bx bx-user"></i> Name</span>
+            </h5>
+            <input type="text" class="form-control" name ="name" required/>
+          </div>
+
+          <div class="form-group mb-3">
+            <h5>
+              <span><i class="bx bx-envelope"></i> Email</span>
+            </h5>
+            <input type="email" value="{{user.email}}" class="form-control" name ="email" required />
+          </div>
+
+          <div class="form-group mb-3">
+            <h5>
+              <span><i class="fas fa-phone-alt"></i> Phone No.</span>
+            </h5>
+            <input type="number" class="form-control" name ="num" required/>
+          </div>
+
+          <div class="form-group mb-3">
+            <h5>
+              <span><i class="far fa-question-circle"></i> How can we help uou ..</span>
+            </h5>
+            <textarea type="text" class="form-control" name="desc"  required /></textarea>
+          </div>
+
+          
+
+          <div class="d-grid gap-2 mb-3">
+            <button class="btn btn-dark" type="submit">Submit</button>
+          </div>
+         
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock body %}
+
+
